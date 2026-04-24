@@ -1,0 +1,107 @@
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111;
+  min-height: 100vh;
+}
+
+.screen {
+  background: #111;
+  padding: 1rem;
+}
+
+p {
+  font-family: "VT323", monospace;
+  color: #34e265;
+}
+
+.commands-list {
+  background: #111;
+  min-height: 75vh;
+  margin-top: 1rem;
+  font-family: "VT323", monospace;
+}
+
+.input-div {
+  position: sticky;
+  bottom: 5%;
+  left: 50%;
+  right: 50%;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  max-width: 350px;
+  min-height: 2rem;
+  background: #14250d;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  color: #34e265;
+  border-radius: 24px;
+  font-size: 1.25rem;
+}
+
+#commandInput {
+  font-family: "VT323", monospace;
+  background: none;
+  border: none;
+  outline: none;
+  width: 80%;
+  height: calc(100% + 12px);
+  padding-left: 0.25rem;
+  color: #34e265;
+  font-size: 1.4rem;
+}
+
+#commands-ul {
+  color: #34e265;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* commands colors */
+.error {
+  color: #ff0000;
+}
+
+.string {
+  color: #70dbd2;
+}
+
+.int {
+  color: #ffa928;
+}
+
+.new {
+  font-size: 1.25rem;
+  animation: animateCommand 500ms ease;
+}
+
+.int.new,
+.string.new,
+.error.new {
+  animation-delay: 100ms;
+}
+
+@keyframes animateCommand {
+  0% { background: #34e265; }
+  100% { background: none; }
+}

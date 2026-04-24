@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Web Terminal</title>
+</head>
+<body>
+
+  <div class="screen">
+    <p id="initMessage" class="message">
+      Welcome to the Web Terminal!
+      <br>
+      To access the list of commands, type 'commands'.
+    </p>
+
+    <div class="commands-list">
+      <ul id="commands-ul">
+        <!-- insert commands here -->
+        
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="input-div">
+    <div class="bar">
+      <p>$</p>
+      <input autocomplete="off" type="text" id="commandInput">
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
