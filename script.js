@@ -1,18 +1,18 @@
+const inputBar = document.getElementById("inputBar");
+const symbol = document.getElementById("symbol");
 const commandsInput = document.getElementById("commandInput");
 const commandsUl = document.getElementById("commands-ul");
 
 const avaiableCommands = [
-  "drum", "idk", "commands",
-  "clear", "meow", "number_of_commands",
-  "ls", "explode()", "get_random_letter()",
-  "get_random_number()", "exit()"
+  "uninstall_commands", "drum", "idk",
+  "commands", "clear", "meow",
+  "number_of_commands", "ls", "explode()", "get_random_letter()", "get_random_number()", "exit()"
 ]
 
 const customCommands = [
   {"name": "drum", "print": '"Drumming!!"'},
   {"name": "idk", "print": '"You Dont Know."'},
   {"name": "meow", "print": '"meowwww 🐈"'},
-  {"name": "number_of_commands", "print": `number_of_commands: ${avaiableCommands.length}`},
   {"name": "ls", "print": 'README.md  index.html  style.css  script.js  author/'},
 ]
 
@@ -88,6 +88,36 @@ function exit() {
   document.body.innerHTML = "exit()";
 }
 
+function uninstallCommands() {
+  commandsInput.disabled = true;
+
+  let times = avaiableCommands.length - 1;
+  let counter = 0;
+
+  const deleting = setInterval(() => {
+
+    if (counter === times) {
+      avaiableCommands.pop();
+      clearInterval(deleting);
+
+      addCustomLineToList(command=`${avaiableCommands.length !== 0 ? `Available commands: ${avaiableCommands.join(", ")}.` : 'ERROR: NO COMMANDS FOUND'}`, type=`${avaiableCommands.length !== 0 ? "string" : "error"}`)
+
+      inputBar.classList.add("no-commands");
+      symbol.classList.add("no-commands")
+
+      return;
+    }
+
+    avaiableCommands.pop();
+    addCustomLineToList(command=`Available commands: ${avaiableCommands.join(", ")}.`, type="string");
+    addCustomLineToList(command=`ERROR: COMMAND DELETED`, type="error");
+
+    counter++;
+
+  }, 750);
+
+}
+
 function handleCommands() {
   addUserCommandToList();
 
@@ -127,6 +157,15 @@ function handleCommands() {
     // get a random number and show it
     if (userTyped === "get_random_number()") {
       addCustomLineToList(command=`${getRandomNumber()}`, type="int")
+    }
+
+    // show number of commands avaible
+    if (userTyped === "number_of_commands") {
+      addCustomLineToList(command=`number_of_commands: ${avaiableCommands.length}`, type="string")
+    }
+
+    if (userTyped === "uninstall_commands") {
+      uninstallCommands()
     }
 
     // kill the Terminal

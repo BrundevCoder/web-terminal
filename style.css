@@ -77,6 +77,11 @@ p {
   gap: 5px;
 }
 
+.no-commands {
+  background: #700000;
+  color: #ff0000;
+}
+
 /* commands colors */
 .error {
   color: #ff0000;
