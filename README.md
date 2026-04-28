@@ -20,7 +20,22 @@ Basically, the code detects user input and checks if what they typed exists in a
 - `exit`: It simply clears the entire screen, like exiting a terminal.
 - `handleCommands`: This is the main function of the code, it handles the input and decides what to do with it.
 
+## Do you have questions about how some functions work?
+### I hope this can help:
+
+- `uninstall_commands`: This command literally deletes all commands from the terminal, so you won't be able to use any more. To revert, simply reset the page!
+- `explode()`: If you're encountering errors, it might be due to the '()' characters; they're necessary for the code to function! This command simply deletes your last current command, so you'll lose some. If you want to revert, just refresh the page!
+- `get_random_letter()`: It's not working? Maybe it's because the "()" are necessary for it to work!
+- `get_random_number()`: It's not working? Maybe it's because the "()" are necessary for it to work!
+- `exit()`: It's not working? Maybe it's because the "()" are necessary for it to work! Furthermore, this function literally kills the terminal, so you can only type again when you refresh the page!
+- `500_uninstall_commands()`: It's not working? Maybe it's because the "()" are necessary for it to work! Furthermore, this function will also kill your terminal; it was made purely for entertainment and will literally fill your terminal with messages!
+- `500_explode()`: same as the previous command.
+- `debug`: Each time you type this command, it changes to the opposite of the current debug setting; if it was already on, then you will turn it off, and if it was off, then you will turn it on.
 
 ## More information:
 
 - If you click "Enter", it automatically sends your input, and at the end of the action, it returns focus to the input so you don't have to click it every time.
+
+# Notes on the new update (September 28, 2026) :
+- New commands: blur, unblur, debug, rotate(degrees)
+- Added a **history** of typed commands; simply press the **arrow keys** (up and down) on your keyboard to navigate through the history!
