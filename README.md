@@ -36,6 +36,6 @@ Basically, the code detects user input and checks if what they typed exists in a
 
 - If you click "Enter", it automatically sends your input, and at the end of the action, it returns focus to the input so you don't have to click it every time.
 
-# Notes on the new update (September 28, 2026) :
+# Notes on the new update (April 28, 2026) :
 - New commands: blur, unblur, debug, rotate(degrees)
 - Added a **history** of typed commands; simply press the **arrow keys** (up and down) on your keyboard to navigate through the history!
