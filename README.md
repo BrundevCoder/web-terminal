@@ -39,3 +39,7 @@ Basically, the code detects user input and checks if what they typed exists in a
 # Notes on the new update (April 28, 2026) :
 - New commands: blur, unblur, debug, rotate(degrees)
 - Added a **history** of typed commands; simply press the **arrow keys** (up and down) on your keyboard to navigate through the history!
+
+## Notes on the new update (April 25, 2026) :
+- New commands: uninstall_commands, 500_explode(), 500_uninstall_commands(), meow
+- Added a **history** of typed commands; simply press the **arrow keys** (up and down) on your keyboard to navigate through the history!
