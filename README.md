@@ -30,6 +30,7 @@ Basically, the code detects user input and checks if what they typed exists in a
 - `exit()`: It's not working? Maybe it's because the "()" are necessary for it to work! Furthermore, this function literally kills the terminal, so you can only type again when you refresh the page!
 - `500_uninstall_commands()`: It's not working? Maybe it's because the "()" are necessary for it to work! Furthermore, this function will also kill your terminal; it was made purely for entertainment and will literally fill your terminal with messages!
 - `500_explode()`: same as the previous command.
+- `rotate(degrees)`: Did you get an error? You probably forgot the parentheses, or just type something like 'rotate(180)', typing something like 'rotate(180deg)' won't work!
 - `debug`: Each time you type this command, it changes to the opposite of the current debug setting; if it was already on, then you will turn it off, and if it was off, then you will turn it on.
 
 ## More information:
