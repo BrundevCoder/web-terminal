@@ -45,7 +45,7 @@ Basically, the code detects user input and checks if what they typed exists in a
 - New commands: open, brightness, invert, contrast, sepia, grayscale, hue-rotate, remove_filters, update_filters, skew, info
 - Added **new** sound effect (There wasn't before) to `drum`, `meow` command and when you type a command that doesn't exist
 - Terminal Filters
-- `open` commands like `open youtube`, they O=open a new tab in your browser with the supposed link. Type: `open youtube` redirects to: `1`https://www.youtube.com/`
+- `open` commands like `open youtube`, they O=open a new tab in your browser with the supposed link. Type: `open youtube` redirects to: `https://www.youtube.com/`
 
 ## Notes on the new update (April 28, 2026) :
 - New commands: blur, unblur, debug, rotate(degrees)
