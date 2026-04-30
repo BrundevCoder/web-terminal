@@ -12,6 +12,10 @@ body {
   min-height: 100vh;
 }
 
+.skew {
+  transform: skewY(5deg);
+}
+
 .screen {
   background: #111;
   padding: 1rem;

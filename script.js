@@ -9,7 +9,11 @@ const avaiableCommands = [
   "commands", "clear", "meow",
   "number_of_commands", "ls", "explode()", "get_random_letter()", "get_random_number()", "exit()",
   "500_uninstall_commands()", "500_explode()", "reset",
-  "blur", "unblur", "debug"
+  "blur", "debug", "open",
+  "brightness", "invert", "contrast", 
+  "sepia", "grayscale", "hue-rotate",
+  "remove_filters", "update_filters", "skew",
+  "info"
 ]
 
 const specialCommands = [
@@ -27,7 +31,7 @@ const customCommands = [
 
 let userHistory = [];
 let historyIndex = 0;
-
+let terminalFilters = [];
 let debug = false;
 
 // functions
@@ -187,13 +191,14 @@ function five_hundred_explosions() {
 
 }
 
-function controllBlur(amount, type) {
-  if (type === "blur") {
-    screen.style.filter = `blur(${amount}px)`;
-  }
-  else if (type === "unblur") {
-    screen.style.filter = `blur(0px)`;
-  }
+function controllBlur(amount) {
+  terminalFilters.push(`blur(${amount}px)`);
+}
+
+function controlFilters() {
+  let filters = terminalFilters.join(" ");
+
+  document.body.style.filter = filters;
 }
 
 function handleDebug() {
@@ -245,6 +250,10 @@ function handleCommands() {
     for (let i = 0; i < customCommands.length; i++) {
       if (customCommands[i]["name"] === userTyped) {
         addCustomLineToList(command=customCommands[i]["print"], type="string")
+
+        if (customCommands[i]["name"] === "drum") {
+          new Audio("audios/drums.mp3").play()
+        }
         break;
       }
     }
@@ -286,6 +295,7 @@ function handleCommands() {
     // meow with random 'w' length
     if (userTyped === "meow") {
       addCustomLineToList(command=`"meow${'w'.repeat(Math.floor(Math.random() * 15))} 🐈"`, type="string")
+      new Audio("audios/cat.mp3").play()
     }
 
     // uninstall commands 500 times
@@ -303,15 +313,85 @@ function handleCommands() {
     }
 
     if (userTyped === "blur") {
-      controllBlur(5, "blur")
+      controllBlur(5)
+      addCustomLineToList("To Apply the filter you need to run 'update_filters' !", "string")
+      addCustomLineToList("To remove filters, type: 'remove_filters'' !", "string")
     }
 
-    if (userTyped === "unblur") {
-      controllBlur(0, "unblur")
+    if (userTyped === "brightness") {
+      terminalFilters.push(`brightness(2)`);
+      addCustomLineToList("To Apply the filter you need to run 'update_filters' !", "string")
+      addCustomLineToList("To remove filters, type: 'remove_filters'' !", "string")
+    }
+
+    if (userTyped === "invert") {
+      terminalFilters.push(`invert()`);
+      addCustomLineToList("To Apply the filter you need to run 'update_filters' !", "string")
+      addCustomLineToList("To remove filters, type: 'remove_filters'' !", "string")
+    }
+
+    if (userTyped === "contrast") {
+      terminalFilters.push(`contrast(10)`);
+      addCustomLineToList("To Apply the filter you need to run 'update_filters' !", "string")
+      addCustomLineToList("To remove filters, type: 'remove_filters'' !", "string")
+    }
+
+    if (userTyped === "sepia") {
+      terminalFilters.push(`sepia()`);
+      addCustomLineToList("To Apply the filter you need to run 'update_filters' !", "string")
+      addCustomLineToList("To remove filters, type: 'remove_filters'' !", "string")
+    }
+
+    if (userTyped === "grayscale") {
+      terminalFilters.push(`grayscale(0.7)`);
+      addCustomLineToList("To Apply the filter you need to run 'update_filters' !", "string")
+      addCustomLineToList("To remove filters, type: 'remove_filters'' !", "string")
+    }
+
+    if (userTyped === "hue-rotate") {
+      terminalFilters.push(`hue-rotate(90deg)`);
+      addCustomLineToList("To Apply the filter you need to run 'update_filters' !", "string")
+      addCustomLineToList("To remove filters, type: 'remove_filters'' !", "string")
+    }
+
+    if (userTyped === "skew") {
+      document.body.classList.toggle("skew");
+      addCustomLineToList("To activate/deactivate, simply type 'skew' again!", "string")
     }
 
     if (userTyped === "debug") {
       handleDebug()
+    }
+
+    if (userTyped === "open") {
+
+      const openCommands = ["portolfio", "guess-the-number", "guess-the-word", "portolfio2", "excuse-generator", "cat-gallery", "temperature-converter", "new-terminal", "youtube", "spotify"]
+
+      addCustomLineToList(`To open other projects you can use the command: "open project_name", for example: "open portolfio". Here is a list of what you can use with "open":`, "string");
+
+      for (let i = 0; i < openCommands.length; i++) {
+        addCustomLineToList(`$ 'open ${openCommands[i]}' `, "string")
+      }
+
+    }
+
+    // add filters to the screen
+    if (userTyped === "update_filters") {
+      if (terminalFilters.length === 0) {
+        addCustomLineToList("It looks like you haven't added any filters yet! Try typing something like 'brightness' (we have more filters) and try again.", "error")
+        return
+      }
+      controlFilters();
+    }
+
+    if (userTyped === "remove_filters") {
+      // remove all filters at once
+      terminalFilters = [];
+      controlFilters();
+    }
+
+    if (userTyped === "info") {
+      addCustomLineToList("Updated April 30, 2026, created by Bruno with 💖", "string")
     }
 
     // kill the Terminal
@@ -320,6 +400,128 @@ function handleCommands() {
         exit();
       }, 1000);
     }
+
+    return;
+  }
+
+  // redirecting websites made by me here
+  if (userTyped === "open portolfio") {
+
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to portfolio", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/portfolio/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open guess-the-number") {
+
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to guess-the-number", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/guess-the-number-web/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open guess-the-word") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to guess-the-word", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/guess-the-word/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open portolfio2") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to portolfio2", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/school-web/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open excuse-generator") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to excuse-generator", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/excuse-teacher-generator/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open cat-gallery") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to cat-gallery", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/cat-gallery/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open temperature-converter") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to temperature-converter", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/temperature-converter/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open new-terminal") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to new-terminal", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://brundevcoder.github.io/web-terminal/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open youtube") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to youtube", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://www.youtube.com/", "_blank")
+    }, 2000);
+
+    return;
+  }
+  else if (userTyped === "open spotify") {
+    
+    setTimeout(() => {
+      addCustomLineToList("Redirecting to spotify", "string")
+    }, 1000);
+
+    setTimeout(() => {
+      open("https://open.spotify.com/", "_blank")
+    }, 2000);
 
     return;
   }
@@ -350,6 +552,7 @@ function handleCommands() {
 
   // if no result, give error message in the terminal
   addCustomLineToList(command=`No command found that was named: "${userTyped}"`, type="error");
+  new Audio("audios/error.mp3").play()
   
   commandsInput.focus();
 
